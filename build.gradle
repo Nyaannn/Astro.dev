@@ -1,0 +1,139 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = 'forge'
+            url = 'http://files.minecraftforge.net/maven'
+        }
+        maven {
+            name = 'SpongePowered'
+            url = 'https://repo.spongepowered.org/maven'
+        }
+        maven {
+            url = "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
+        classpath "gradle.plugin.com.peterabeles.gversion:gversion-plugin:1.10"
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'com.peterabeles.gversion'
+
+
+version project.modVersion
+group project.modGroup
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+compileJava.options.encoding = "UTF-8"
+
+minecraft {
+    version = "1.12.2-14.23.5.2768"
+    runDir = "run"
+    mappings = "stable_39"
+    coreMod = 'international.astro.mixins.MixinLoader'
+    makeObfSourceJar = false
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spongepowered-repo'
+        url = 'https://repo.spongepowered.org/maven/'
+    }
+}
+
+dependencies {
+    compile group: "com.googlecode.json-simple", name: "json-simple", version: "1.1.1"
+    compile('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
+        exclude module: 'launchwrapper'
+        exclude module: 'guava'
+        exclude module: 'gson'
+        exclude module: 'commons-io'
+    }
+    compile 'club.minnced:java-discord-rpc:2.0.1'
+}
+
+
+
+task getDeps(type: Copy) {
+    from sourceSets.main.runtimeClasspath
+    into 'runtime/'
+}
+
+gversion {
+    srcDir       = "src/main/java/"
+    classPackage = "international.astro"
+    className    = "Version"
+    dateFormat   = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    timeZone     = "EST"
+    debug        = false
+    language     = "java"
+    explicitType = false
+    indent       = "\t"
+    annotate     = false
+}
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', project.minecraft.version
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+    rename '(.+_at.cfg)', 'META-INF/$1'
+}
+
+shadowJar {
+    dependencies {
+        include(dependency('com.googlecode.json-simple:json-simple:1.1.1'))
+        include(dependency('org.spongepowered:mixin'))
+        include(dependency('com.lukflug:panelstudio'))
+        include(dependency('com.lukflug:panelstudio-mc12'))
+    }
+    exclude 'dummyThing'
+    exclude 'LICENSE.txt'
+    classifier = 'release'
+}
+
+mixin {
+    defaultObfuscationEnv searge
+    add sourceSets.main, 'mixins.astro.refmap.json'
+
+}
+
+reobf {
+    shadowJar {
+        mappingType = 'SEARGE'
+        classpath = sourceSets.main.compileClasspath
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'MixinConfigs': 'mixins.astro.json',
+                'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'TweakOrder': 0,
+                'FMLCorePluginContainsFMLMod': 'true',
+                'FMLCorePlugin': 'international.astro.mixins.MixinLoader',
+                'ForceLoadAsMod': 'true',
+                'FMLAT': 'astro_at.cfg'
+        )
+    }
+}
+
+build.dependsOn(shadowJar)

@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "package": "international.astro.mixins.mixin",
+  "refmap": "mixins.astro.refmap.json",
+  "mixins": [
+    "net.minecraft.client.gui.MixinGuiNewChat",
+    "net.minecraft.client.entity.MixinEntityPlayerSP",
+    "net.minecraft.network.MixinNetworkManager",
+    "net.minecraft.entity.MixinEntity",
+    "net.minecraft.client.gui.MixinGuiMainMenu",
+    "net.minecraft.client.multiplayer.MixinPlayerControllerMP",
+    "net.minecraft.client.renderer.MixinItemRenderer",
+    "net.minecraft.client.renderer.MixinEntityRenderer",
+    "net.minecraft.client.MixinMinecraft",
+    "net.minecraft.client.audio.MixinSoundHandler",
+    "net.minecraft.util.TimerMixin",
+    "net.minecraft.network.play.client.MixinCPacketPlayer"
+  ]
+}

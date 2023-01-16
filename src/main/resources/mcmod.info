@@ -1,0 +1,16 @@
+[
+{
+  "modid": "astro",
+  "name": "Astro.dev",
+  "description": "International menace client",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://www.pornhub.com",
+  "updateUrl": "",
+  "authorList": ["Nyaann, Logging4J and _WMS"],
+  "credits": "",
+  "logoFile": "icon.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
