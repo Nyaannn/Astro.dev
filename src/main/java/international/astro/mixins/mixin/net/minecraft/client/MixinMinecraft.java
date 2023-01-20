@@ -4,6 +4,7 @@ import international.astro.Astro;
 import international.astro.graphics.menu.AstroMainMenu;
 import international.astro.mixins.accessor.IMinecraft;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.Timer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -33,7 +34,7 @@ public abstract class MixinMinecraft implements IMinecraft {
 
     @Inject(method = "init", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
-        this.displayGuiScreen(new AstroMainMenu());
+        displayGuiScreen(new AstroMainMenu());
     }
 
     @Inject(method = "shutdownMinecraftApplet", at = @At("HEAD"))

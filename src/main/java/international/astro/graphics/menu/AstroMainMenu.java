@@ -11,14 +11,12 @@ import java.util.ArrayList;
 public class AstroMainMenu extends GuiScreen {
 
     ArrayList<Button> buttons = new ArrayList<>();
-
     private final Button singlePlayerButton;
     private final Button multiPlayerButton;
     private final Button settingsButton;
     private final Button quitButton;
 
     private final Button vanillaMenu;
-
 
     public AstroMainMenu() {
         singlePlayerButton = new Button("Single", width / 2 - 75, height / 2);

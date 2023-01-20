@@ -22,7 +22,7 @@ public class HUD extends Hack {
     public void onRender(RenderGameOverlayEvent.Post e) {
         if(nullCheck()) return;
         if (e.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
-            Astro.font.drawStringWidthShadow("Welcome to "+Astro.NAME + " B" + Astro.VERSION+" [commit "+Astro.getSimpleGitHash()+"] "+mc.player.getName()+"!", 2, 2, 0xff7878FF);
+            Astro.font.drawStringWidthShadow("Welcome to "+Astro.NAME + " B" + Astro.VERSION+" "+mc.player.getName()+"!", 2, 2, 0xff7878FF);
             Astro.font.drawString("Position: "+"X:"+Math.round(mc.player.posX)+" Y:"+Math.round(mc.player.posY)+" Z:"+Math.round(mc.player.posZ), 2, 12, 0xff7878FF);
             Astro.font.drawString("Health: "+Math.round(mc.player.getHealth()), 2, 22, 0xff7878FF);
             Astro.font.drawString("Dimension: "+mc.player.dimension, 2, 32, 0xff7878FF);

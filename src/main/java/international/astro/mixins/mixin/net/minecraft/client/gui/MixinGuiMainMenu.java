@@ -14,13 +14,13 @@ public class MixinGuiMainMenu extends GuiScreen {
 
     @Inject(method = "addSingleplayerMultiplayerButtons", at = @At("HEAD"))
     public void addSingleplayerMultiplayerButtons(int p_addSingleplayerMultiplayerButtons_1_, int p_addSingleplayerMultiplayerButtons_2_, CallbackInfo ci){
-        this.buttonList.add(new GuiButton(69420, 10, 10,100,20,  "AstroMenu"));
+        buttonList.add(new GuiButton(69420, 10, 10,100,20,  "AstroMenu"));
     }
 
     @Inject(method = "actionPerformed", at = @At("HEAD"))
     public void actionPerformed(GuiButton p_actionPerformed_1_, CallbackInfo ci){
         if (p_actionPerformed_1_.id == 69420) {
-            this.mc.displayGuiScreen(new AstroMainMenu());
+            mc.displayGuiScreen(new AstroMainMenu());
         }
     }
 

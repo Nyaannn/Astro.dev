@@ -33,7 +33,7 @@ public class Astro {
     public static final Logger LOGGER = LogManager.getLogger("Astro.dev");
     public static final String NAME = "Astro.dev";
     public static final String MODID = "astro";
-    public static final String VERSION = "2";
+    public static final String VERSION = "3";
     public static Minecraft mc = Minecraft.getMinecraft();
     public static CommandManager commandManager;
     public static ClickGui clickGui;
@@ -51,7 +51,7 @@ public class Astro {
     @Mod.EventHandler
     public static void init(FMLInitializationEvent event) {
         log("Client initialization");
-        Display.setTitle(NAME+" b"+VERSION+" [commit "+getSimpleGitHash()+"]");
+        Display.setTitle(NAME+" b"+VERSION);
         Discord.startRPC();
         hackManager = new HackManager();
         commandManager = new CommandManager();
@@ -71,11 +71,6 @@ public class Astro {
     @Mod.EventHandler
     public static void postInit(FMLPostInitializationEvent event) {
         log("Client PostInitialization");
-    }
-
-    public static String getSimpleGitHash(){
-        if(Version.GIT_SHA == null){return null;}
-        return Version.GIT_SHA.substring(0, 7);
     }
 
     public static void log(String message){
