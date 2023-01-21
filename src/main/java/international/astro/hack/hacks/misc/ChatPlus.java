@@ -3,15 +3,9 @@ package international.astro.hack.hacks.misc;
 import international.astro.events.PacketReceiveEvent;
 import international.astro.hack.Hack;
 import international.astro.hack.option.options.OBoolean;
-import international.astro.util.TimerUtil;
-import net.minecraft.network.play.client.CPacketChatMessage;
-import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.server.SPacketChat;
 import net.minecraftforge.client.event.ClientChatEvent;
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import org.lwjgl.input.Keyboard;
 
 import java.util.Random;
 
@@ -24,6 +18,7 @@ public class ChatPlus extends Hack {
     public OBoolean greenText = new OBoolean("GreenText", true);
     public OBoolean clearChat = new OBoolean("ClearChat", true);
     public OBoolean portalChat = new OBoolean("PortalChat", true);
+    public OBoolean antiChatLag = new OBoolean("AnitiChatLag",true);
     public OBoolean RedText = new OBoolean("RedText", false);
     public OBoolean YellowText = new OBoolean("YellowText", false);
     public OBoolean BlueText = new OBoolean("BlueText", false);
@@ -36,11 +31,30 @@ public class ChatPlus extends Hack {
         addOption(greenText);
         addOption(clearChat);
         addOption(portalChat);
+        addOption(antiChatLag);
         addOption(RedText);
         addOption(YellowText);
         addOption(BlueText);
     }
 
+    @SubscribeEvent
+    public void onReceive(PacketReceiveEvent e){
+        if(antiChatLag.isEnabled()) {
+            if (e.getPacket() instanceof SPacketChat) {
+                String text = ((SPacketChat) e.getPacket()).getChatComponent().getFormattedText();
+                int symbolCount = 0;
+                for (int i = 0; i < text.length(); i++) {
+                    char c = text.charAt(i);
+                    if (isSymbol(c)) {
+                        symbolCount++;
+                    }
+                    if (symbolCount > 100) {
+                        e.setCanceled(true);
+                    }
+                }
+            }
+        }
+    }
 
     @SubscribeEvent
     public void onChat(ClientChatEvent e) {
@@ -84,5 +98,9 @@ public class ChatPlus extends Hack {
             }
 
         }
+    }
+
+    private boolean isSymbol(char charIn) {
+        return ((charIn < 'A' || charIn > 'Z') && (charIn < 'a' || charIn > 'z') && (charIn < '0' || charIn > '9'));
     }
 }

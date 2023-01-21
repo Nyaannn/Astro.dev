@@ -50,6 +50,7 @@ public class HackManager{
         add(new AutoTotem());
         add(new Animations());
         add(new FastUse());
+        add(new InstaMine());
     }
 
     public List<Hack> getHacks() {

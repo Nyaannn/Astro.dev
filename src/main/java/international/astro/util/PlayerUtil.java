@@ -2,9 +2,12 @@ package international.astro.util;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -37,6 +40,22 @@ public class PlayerUtil {
             }
         }
         return slot;
+    }
+
+    public static int getBestAvailableToolSlot(final IBlockState blockState) {
+        int n = -1;
+        double n2 = 0.0;
+        for (int i = 0; i < 9; ++i) {
+            final ItemStack getStackInSlot = mc.player.inventory.getStackInSlot(i);
+            final float getDestroySpeed;
+            final int getEnchantmentLevel;
+            final float n3;
+            if (!getStackInSlot.isEmpty() && (getDestroySpeed = getStackInSlot.getDestroySpeed(blockState)) > 1.0f && (n3 = (float)(getDestroySpeed + (((getEnchantmentLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.EFFICIENCY, getStackInSlot)) > 0) ? (Math.pow(getEnchantmentLevel, 2.0) + 1.0) : 0.0))) > n2) {
+                n2 = n3;
+                n = i;
+            }
+        }
+        return n;
     }
 
     public static boolean placeBlock(BlockPos pos, EnumHand hand, boolean packet) {

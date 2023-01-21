@@ -24,10 +24,6 @@ public abstract class MixinItemRenderer {
     @Shadow
     public ItemStack itemStackOffHand;
     @Shadow
-    public float prevEquippedProgressMainHand;
-    @Shadow
-    public float equippedProgressMainHand;
-    @Shadow
     protected abstract void renderMapFirstPerson(float p_187463_1_, float p_187463_2_, float p_187463_3_);
 
     @Shadow
