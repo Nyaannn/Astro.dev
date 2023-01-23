@@ -42,22 +42,6 @@ public class PlayerUtil {
         return slot;
     }
 
-    public static int getBestAvailableToolSlot(final IBlockState blockState) {
-        int n = -1;
-        double n2 = 0.0;
-        for (int i = 0; i < 9; ++i) {
-            final ItemStack getStackInSlot = mc.player.inventory.getStackInSlot(i);
-            final float getDestroySpeed;
-            final int getEnchantmentLevel;
-            final float n3;
-            if (!getStackInSlot.isEmpty() && (getDestroySpeed = getStackInSlot.getDestroySpeed(blockState)) > 1.0f && (n3 = (float)(getDestroySpeed + (((getEnchantmentLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.EFFICIENCY, getStackInSlot)) > 0) ? (Math.pow(getEnchantmentLevel, 2.0) + 1.0) : 0.0))) > n2) {
-                n2 = n3;
-                n = i;
-            }
-        }
-        return n;
-    }
-
     public static boolean placeBlock(BlockPos pos, EnumHand hand, boolean packet) {
         EnumFacing side = getFirstFacing(pos);
         if (side == null) return false;

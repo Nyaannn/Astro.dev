@@ -1,5 +1,6 @@
 package international.astro.hack;
 
+import international.astro.hack.hacks.client.BackupCaller;
 import international.astro.hack.hacks.client.ClickGuiMod;
 import international.astro.hack.hacks.client.HUD;
 import international.astro.hack.hacks.combat.*;
@@ -51,6 +52,8 @@ public class HackManager{
         add(new Animations());
         add(new FastUse());
         add(new InstaMine());
+        add(new GodMode());
+        add(new BackupCaller());
     }
 
     public List<Hack> getHacks() {

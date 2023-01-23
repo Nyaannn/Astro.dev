@@ -20,24 +20,19 @@ public class HUD extends Hack {
 
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Post e) {
-        if(nullCheck()) return;
+        if (nullCheck()) return;
         if (e.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
-            Astro.font.drawStringWidthShadow("Welcome to "+Astro.NAME + " B" + Astro.VERSION+" "+mc.player.getName()+"!", 2, 2, 0xff7878FF);
-            Astro.font.drawString("Position: "+"X:"+Math.round(mc.player.posX)+" Y:"+Math.round(mc.player.posY)+" Z:"+Math.round(mc.player.posZ), 2, 12, 0xff7878FF);
-            Astro.font.drawString("Health: "+Math.round(mc.player.getHealth()), 2, 22, 0xff7878FF);
-            Astro.font.drawString("Dimension: "+mc.player.dimension, 2, 32, 0xff7878FF);
+            Astro.font.drawStringWidthShadow(Astro.NAME + " B" + Astro.VERSION, 2, 2, Astro.colorManager.getRGBA());
             ScaledResolution sr = new ScaledResolution(mc);
             int y = 2;
-            final ArrayList<String> list = new ArrayList<String>();
-            for (final Hack hack : Astro.hackManager.getHacks()) {
-                if (hack.isEnabled()) {
-                    list.add(hack.getName());
-                }
-                list.sort(Comparator.comparingInt(s -> mc.fontRenderer.getStringWidth(s)));
-                Collections.reverse(list);
+            final ArrayList<String> list = new ArrayList<>();
+            for (final Hack hack : Astro.hackManager.getEnabledHacks()) {
+                list.add(hack.getName());
             }
+            list.sort(Comparator.comparingInt(s -> Astro.font.getStringWidth(s)));
+            Collections.reverse(list);
             for (final String name : list) {
-                Astro.font.drawString(name, (float) ((sr.getScaledWidth() - Astro.font.getStringWidth(name)) - 0.5), y + 2, 0xff7878FF);
+                Astro.font.drawString(name, (float) ((sr.getScaledWidth() - Astro.font.getStringWidth(name)) - 1.5), y + 2, Astro.colorManager.getRGBA());
                 y += 10;
             }
         }

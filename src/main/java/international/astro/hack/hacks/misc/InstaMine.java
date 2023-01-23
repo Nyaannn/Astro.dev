@@ -93,26 +93,27 @@ public class InstaMine extends Hack {
         if (blacklist.contains(mc.world.getBlockState(breakPos).getBlock())) {
             return;
         }
-        final float getBlockHardness = mc.world.getBlockState(breakPos).getBlockHardness(mc.world, breakPos);
-        final int currentItem2 = mc.player.inventory.currentItem;
-        if (!breakSuccess.passedMs((int)getBlockHardness)) {
-            return;
+        if(breakPos != null) {
+            final float getBlockHardness = mc.world.getBlockState(breakPos).getBlockHardness(mc.world, breakPos);
+            final int currentItem2 = mc.player.inventory.currentItem;
+            if (!breakSuccess.passedMs((int) getBlockHardness)) {
+                return;
+            }
+            try {
+                block = mc.world.getBlockState(breakPos).getBlock();
+            } catch (Exception ex) {
+            }
+            final int bestAvailableToolSlot = getBestAvailableToolSlot(block.getBlockState().getBaseState());
+            if (mc.player.inventory.currentItem != bestAvailableToolSlot && bestAvailableToolSlot != -1) {
+                mc.player.inventory.currentItem = bestAvailableToolSlot;
+                mc.playerController.updateController();
+                mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, breakPos, facing));
+                mc.player.inventory.currentItem = currentItem2;
+                mc.playerController.updateController();
+                return;
+            }
         }
-        try {
-            block = mc.world.getBlockState(breakPos).getBlock();
-        }
-        catch (Exception ex) {}
-        final int bestAvailableToolSlot = getBestAvailableToolSlot(block.getBlockState().getBaseState());
-        if (mc.player.inventory.currentItem != bestAvailableToolSlot && bestAvailableToolSlot != -1) {
-            mc.player.inventory.currentItem = bestAvailableToolSlot;
-            mc.playerController.updateController();
-            mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, breakPos, facing));
-            mc.player.inventory.currentItem = currentItem2;
-            mc.playerController.updateController();
-            return;
-        }
-        mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, breakPos, facing));
-    }
+     }
 
     @SubscribeEvent
     public void onPacketSend(PacketSendEvent e) {

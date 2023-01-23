@@ -108,7 +108,6 @@ public class Hack {
         this.enabled = enabled;
     }
 
-
     public enum Category {
         COMBAT("Combat"),
         EXPLOIT("Exploit"),

@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 @Hack.Construct(name = "Phase", description = "Phase n shit", category = Hack.Category.MOVEMENT)
 public class Phase extends Hack {
-    public OList mode = new OList("Mode", "Corner5b5t", "Boat");
+    public OList mode = new OList("Mode", "Boat", "Boat");
     public static Phase getInstance = new Phase();
 
     public Phase() {
@@ -17,19 +17,23 @@ public class Phase extends Hack {
 
     @Override
     public void onDisable() {
-        mc.player.getRidingEntity().setNoGravity(false);
-        mc.player.getRidingEntity().noClip = false;
-        mc.player.noClip = false;
+        if(mc.player.isRiding()) {
+            mc.player.getRidingEntity().setNoGravity(false);
+            mc.player.getRidingEntity().noClip = false;
+            mc.player.noClip = false;
+        }
     }
 
     @Override
     public void onEnable() {
-        if(mode.isMode("Boat")){
-            mc.player.getRidingEntity().setNoGravity(true);
-            mc.player.getRidingEntity().noClip = true;
-            mc.player.noClip = true;
+        if(nullCheck()){return;}
+        if(mode.isMode("Boat")) {
+            if (mc.player.isRiding()) {
+                mc.player.getRidingEntity().setNoGravity(true);
+                mc.player.getRidingEntity().noClip = true;
+                mc.player.noClip = true;
+            }
         }
     }
-
 
 }

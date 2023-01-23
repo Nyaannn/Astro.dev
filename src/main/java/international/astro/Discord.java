@@ -13,7 +13,7 @@ public class Discord {
         String discordID = "1063228897719746700";
         DiscordRPC.INSTANCE.Discord_Initialize(discordID, eventHandlers, true, null);
         discordRichPresence.startTimestamp = System.currentTimeMillis() / 1000L;
-        discordRichPresence.details = "Owning";
+        discordRichPresence.details = "https://discord.gg/sRgsXnAK";
         discordRichPresence.largeImageKey = "large";
         discordRichPresence.state = null;
         DiscordRPC.INSTANCE.Discord_UpdatePresence(discordRichPresence);

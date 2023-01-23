@@ -16,17 +16,19 @@ public class ViewTweaks extends Hack {
     public OBoolean wt = new OBoolean("ChangeTime",  true);
     public ODouble fovSlider = new ODouble("Fov", 75, 150, 1, 120);
     public ODouble worldTime = new ODouble("Time", 1, 20, 1, 10);
+    public ODouble swingSpeed = new ODouble("Time", 1, 50, 1, 6);
 
     public OBoolean viewClip = new OBoolean("ViewClip", true);
     public static ViewTweaks getInstance = new ViewTweaks();
 
     public ViewTweaks() {
         addOption(fullBright);
-        addOption(wt);
         addOption(nw);
         addOption(fovSlider);
+        addOption(wt);
         addOption(worldTime);
         addOption(viewClip);
+        addOption(swingSpeed);
     }
 
     @Override
