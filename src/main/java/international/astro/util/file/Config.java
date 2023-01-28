@@ -1,10 +1,36 @@
-package international.astro.util;
+package international.astro.util.file;
+
+import com.google.gson.JsonObject;
 import international.astro.Astro;
+import net.minecraft.client.Minecraft;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import java.io.*;
 import java.util.ArrayList;
-public class FileInteractor {
+
+public class Config extends Thread{
+
+    public static Minecraft mc = Minecraft.getMinecraft();
+    public static final String FOLDER = mc.gameDir+File.separator+"/Astro.dev";
+    public static final String HACKS_FOLDER = mc.gameDir+File.separator+"/Astro.dev/modules";
+
+
+
+    public static void loadConfig(String dir){
+        for(String i:ReadFile(dir)){
+            System.out.println(i);
+        }
+
+    }
+
+    public static void saveConfig(String dir){
+
+    }
+
+
     public static ArrayList<String> ReadFile(String dir) {
-        ArrayList<String> testicle = new ArrayList<String>();
+        ArrayList<String> testicle = new ArrayList<>();
         testicle.clear();
         String fileDirectory = dir;
         try {
@@ -15,9 +41,7 @@ public class FileInteractor {
                 testicle.add(line);
             }
             fileReader.close();
-        } catch (FileNotFoundException e) {
-            Astro.sendErrorMsg(e.getMessage());
-        } catch (IOException e) {
+        } catch (Exception e) {
             Astro.sendErrorMsg(e.getMessage());
         }
         return testicle;
@@ -27,13 +51,13 @@ public class FileInteractor {
         String fileDirectory = dir;
         try {
             fileDirectory = reader.readLine();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         String content = Text;
         try {
             content = reader.readLine();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
@@ -41,7 +65,7 @@ public class FileInteractor {
             BufferedWriter fileWriter = new BufferedWriter(new FileWriter(file));
             fileWriter.write(content);
             fileWriter.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -50,13 +74,13 @@ public class FileInteractor {
         String fileDirectory = dir;
         try {
             fileDirectory = reader.readLine();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         String content = Text;
         try {
             content = reader.readLine();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
@@ -64,10 +88,9 @@ public class FileInteractor {
             BufferedWriter fileWriter = new BufferedWriter(new FileWriter(file, true));
             fileWriter.append(content);
             fileWriter.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-
 }

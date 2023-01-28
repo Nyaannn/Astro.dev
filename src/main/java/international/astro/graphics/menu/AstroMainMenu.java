@@ -6,6 +6,7 @@ import net.minecraft.client.gui.*;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class AstroMainMenu extends GuiScreen {
@@ -14,25 +15,30 @@ public class AstroMainMenu extends GuiScreen {
     private final Button singlePlayerButton;
     private final Button multiPlayerButton;
     private final Button settingsButton;
+    private final Button discordButton;
     private final Button quitButton;
 
     private final Button vanillaMenu;
 
     public AstroMainMenu() {
-        singlePlayerButton = new Button("Single", width / 2 - 75, height / 2);
+        singlePlayerButton = new Button("Single", width / 2 - 75, height / 2,75);
         buttons.add(singlePlayerButton);
 
-        multiPlayerButton = new Button("Multi", width / 2 - 75, height / 2 + 25);
+        multiPlayerButton = new Button("Multi", width / 2 - 75, height / 2 + 25,75);
         buttons.add(multiPlayerButton);
 
-        settingsButton = new Button("Options", width / 2 - 125, height / 2 );
+        settingsButton = new Button("Options", width / 2 - 125, height / 2 ,75);
         buttons.add(settingsButton);
 
-        quitButton = new Button("Quit", width / 2 - 125, height / 2 + 25);
+        quitButton = new Button("Quit", width / 2 - 125, height / 2 + 25,75);
         buttons.add(quitButton);
 
-        vanillaMenu = new Button("Vanilla Menu", width / 2 - 75, height / 2);
+        vanillaMenu = new Button("Vanilla Menu", width / 2 - 75, height / 2,75);
         buttons.add(vanillaMenu);
+
+        //discord button
+        discordButton = new Button("Discord", width / 2 - 75, height / 2,75);
+        buttons.add(discordButton);
     }
 
     @Override
@@ -40,13 +46,15 @@ public class AstroMainMenu extends GuiScreen {
         ScaledResolution sr = new ScaledResolution(mc);
         RenderUtils.drawImage(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), 0x40ffffff, "textures/background.png");
         RenderUtils.drawImage((width / 2)-115, height / 2 - 240, 240, 240, 0x40ffffff, "textures/logo.png");
-        Astro.MenuFont.drawString("Copyright Mojang Studios. Do not distribute! <-- \"Fucking retards\"-Nyaann", width - Astro.MenuFont.getStringWidth("Copyright Mojang Studios. Do not distribute!") - 2, height - Astro.MenuFont.getFontHeight(), 0x50ffffff);
+        Astro.MenuFont.drawString("Copyright Mojang Studios. Do not distribute!", width - Astro.MenuFont.getStringWidth("Copyright Mojang Studios. Do not distribute!") - 2, height - Astro.MenuFont.getFontHeight(), 0x50ffffff);
         Astro.MenuFont.drawString(Astro.NAME +" b" + Astro.VERSION+" By Logging4J, Nyaann and WMS :o)", 4, height - Astro.MenuFont.getFontHeight(), 0x50ffffff);
         settingsButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, width / 2 + 5, height / 2);
         quitButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, width / 2 + 5, height / 2 +25);
         singlePlayerButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, width / 2 - 80, height / 2);
         multiPlayerButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, width / 2 - 80, height / 2+25);
         vanillaMenu.renderButton(p_drawScreen_1_, p_drawScreen_2_, 10, 10);
+
+        discordButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, 90, 10);
         super.drawScreen(p_drawScreen_1_, p_drawScreen_2_, p_drawScreen_3_);
     }
 
@@ -65,6 +73,12 @@ public class AstroMainMenu extends GuiScreen {
             mc.shutdown();
         } else if (vanillaMenu.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
             mc.displayGuiScreen(new GuiMainMenu());
+        } else if (discordButton.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
+            try {
+                Desktop.getDesktop().browse(new URL("https://discord.gg/xADp2aVv79").toURI());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         super.mouseClicked(p_mouseClicked_1_, p_mouseClicked_2_, p_mouseClicked_3_);
     }
@@ -73,23 +87,23 @@ public class AstroMainMenu extends GuiScreen {
         private final String s;
         private int x, y;
         private final int w, h;
-        private final int color, colorPressed;
+        private final Color color, colorPressed;
 
-        public Button(String s, int x, int y) {
+        public Button(String s, int x, int y, int w) {
             this.s = s;
             this.x = x;
             this.y = y;
-            this.w = 75 ;
+            this.w = w;
             this.h = 20;
-            this.color = new Color(255, 255, 255, 29).getRGB();
-            this.colorPressed = new Color(255, 255, 255, 25).getRGB();
+            this.color = new Color(0, 0, 0, 30);
+            this.colorPressed = new Color(0, 0, 0, 50);
         }
 
         public void renderButton(int mouseX, int mouseY, int x, int y) {
             this.x = x;
             this.y = y;
-            RenderUtils.drawRoundedRectangle(x, y, w, h, 2, color);
-            RenderUtils.drawRoundedRectangle(x, y, w, h, 2, RenderUtils.isHovered(x, y, w, h, mouseX, mouseY) ? colorPressed : color );
+            RenderUtils.roundedRect(x, y, w, h, 3, color);
+            RenderUtils.roundedRect(x, y, w, h, 3, RenderUtils.isHovered(x, y, w, h, mouseX, mouseY) ? colorPressed : color );
             Astro.MenuFont.drawString(s, x + w / 2 - Astro.MenuFont.getStringWidth(s) / 2, y + h / 2 - 4, -1);
 
         }

@@ -60,12 +60,12 @@ public class HackButton {
         Gui.drawRect(X, Y, X + W, Y + H, new Color(0, 0, 0, 180).getRGB());
         if (hack.isEnabled()) {
             Gui.drawRect(X, Y, X + W, Y + H, Astro.colorManager.getRGBA());
-           Astro.font.drawString(hack.getName(), (float) (X + 3), (float) (Y + 4), new Color(255, 255, 255).getRGB());
+            Astro.font.drawString(hack.getName(), (float) (X + 3), (float) (Y + 4), new Color(255, 255, 255).getRGB());
         } else {
             Astro.font.drawString(hack.getName(), (float) (X + 3), (float) (Y + 4), new Color(255, 255, 255, 255).getRGB());
         }
-        Gui.drawRect(X, Y - 1, X + 1, Y + H + 1, new Color(0, 0, 0, 180).getRGB());
-        Gui.drawRect(X + 104, Y - 1, X + W, Y + H, new Color(0, 0, 0, 180).getRGB());
+//        Gui.drawRect(X, Y - 1, X + 1, Y + H + 1, new Color(0, 0, 0, 180).getRGB());
+//        Gui.drawRect(X + 104, Y - 1, X + W, Y + H, new Color(0, 0, 0, 180).getRGB());
         if (opening) {
             showingModuleCount++;
             if (showingModuleCount == buttons.size()) {

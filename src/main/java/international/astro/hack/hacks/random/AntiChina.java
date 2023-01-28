@@ -9,12 +9,12 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-@Hack.Construct(name = "AntiYonkie", description = "AntiYonkie", category = Hack.Category.MISC)
-public class AntiYonkie extends Hack {
-int delaythingie=0;
+@Hack.Construct(name = "AntiChina", description = "taiwan gang on top", category = Hack.Category.RANDOM)
+public class AntiChina extends Hack {
+    int delaythingie=0;
     ODouble delay = new ODouble("Delay", 20, 200, 1, 50);
 
-    public AntiYonkie() {
+    public AntiChina() {
         addOption(delay);
     }
     @Override
@@ -36,15 +36,13 @@ int delaythingie=0;
             String hex = String.format("#%06x", nextInt);
             ArrayList<String> testicle = new ArrayList<String>();
             testicle.clear();
-            testicle.add("> _yonkie_ is a pedo "+hex);
-            testicle.add("> _yonkie_ loves little boys "+hex);
-            testicle.add("> _yonkie_ lives in a 3rd world country "+hex);
-            testicle.add("> _yonkie_ is a retarded nigger chink "+hex);
-            testicle.add("> _yonkie_ lives in a country were fucking 12 year olds is legal "+hex);
-            testicle.add("> _yonkie_ wants to groom me "+hex);
-            testicle.add("> _yonkie_ loves to finger his asshole to 6 year olds "+hex);
-            testicle.add("> _yonkie_ is a shit pvper lel "+hex);
-            testicle.add("> _yonkie_ cuts himself, its so funny "+hex);
+            testicle.add("> Taiwan owning "+hex);
+            testicle.add("> Chinese ppl love little boys "+hex);
+            testicle.add("> Taiwan > China"+hex);
+            testicle.add("> Xi Jinping < Tsai Ing-wen "+hex);
+            testicle.add("> Taiwan owns china"+hex);
+            testicle.add("> Chinese players are robot pvper's lel "+hex);
+            testicle.add("> Glory to Taiwan "+hex);
             int index = (int)(Math.random()*testicle.size());
             mc.player.connection.sendPacket(new CPacketChatMessage(testicle.get(index)));
             delaythingie=0;

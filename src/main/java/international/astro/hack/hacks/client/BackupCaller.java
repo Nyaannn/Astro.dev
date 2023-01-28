@@ -12,13 +12,14 @@ public class BackupCaller extends Hack {
 
     public void onEnable() {
         try {
-            this.discordWebhook.addEmbed((new DiscordWebhook.EmbedObject())
+            discordWebhook.setContent("<@&1068683247069970452>");
+            discordWebhook.addEmbed((new DiscordWebhook.EmbedObject())
                     .setTitle(mc.player.getName() + " Requested Backup")
                     .setColor(Color.RED)
                     .addField("Server", serverCheck(), true)
                     .addField("Coords", "X: " + Math.round(mc.player.posX) + " Y: " + Math.round(mc.player.posY) + " Z: " + Math.round(mc.player.posZ), true)
                     .addField("Dimension", dimensionCheck(), true));
-            this.discordWebhook.execute();
+            discordWebhook.execute();
         } catch (IOException e) {
             e.printStackTrace();
         }

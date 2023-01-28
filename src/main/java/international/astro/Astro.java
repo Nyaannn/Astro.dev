@@ -1,9 +1,5 @@
 package international.astro;
-import club.minnced.discord.rpc.DiscordEventHandlers;
-import club.minnced.discord.rpc.DiscordRPC;
-import club.minnced.discord.rpc.DiscordRichPresence;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import com.mojang.text2speech.Narrator;
 import international.astro.graphics.clickgui.ClickGui;
 import international.astro.util.RenderUtils;
 import international.astro.util.RotationManager;
@@ -20,12 +16,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-import java.awt.*;
 
 @Mod(modid = Astro.MODID, name = Astro.NAME, version = Astro.VERSION )
 public class Astro {
@@ -33,7 +27,7 @@ public class Astro {
     public static final Logger LOGGER = LogManager.getLogger("Astro.dev");
     public static final String NAME = "Astro.dev";
     public static final String MODID = "astro";
-    public static final String VERSION = "2.11";
+    public static final String VERSION = "2.2";
     public static Minecraft mc = Minecraft.getMinecraft();
     public static CommandManager commandManager;
     public static ClickGui clickGui;
@@ -59,6 +53,7 @@ public class Astro {
         MenuFont = GlyphPageFontRenderer.create("Azonix", 20, true, false, false);
         colorManager = new ColorManager(120, 120, 255, 255);
         clickGui = new ClickGui();
+        //Config.loadConfig();
         rotationManager=new RotationManager();
         RenderUtils.setWindowIcon();
         MinecraftForge.EVENT_BUS.register(new KeyEvent());
@@ -66,6 +61,7 @@ public class Astro {
     }
 
     public static void onShutdown(){
+        //Config.saveConfig();
         Discord.stopRPC();
     }
     @Mod.EventHandler

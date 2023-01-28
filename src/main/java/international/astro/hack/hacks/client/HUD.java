@@ -4,12 +4,15 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import international.astro.Astro;
 import international.astro.hack.Hack;
 import international.astro.hack.HackManager;
+import international.astro.util.RenderUtils;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,7 +25,8 @@ public class HUD extends Hack {
     public void onRender(RenderGameOverlayEvent.Post e) {
         if (nullCheck()) return;
         if (e.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
-            Astro.font.drawStringWidthShadow(Astro.NAME + " B" + Astro.VERSION, 2, 2, Astro.colorManager.getRGBA());
+            String watermark = Astro.NAME + " b"+Astro.VERSION;
+            Astro.font.drawStringWidthShadow(watermark, 7, 9, Astro.colorManager.getRGBA());
             ScaledResolution sr = new ScaledResolution(mc);
             int y = 2;
             final ArrayList<String> list = new ArrayList<>();

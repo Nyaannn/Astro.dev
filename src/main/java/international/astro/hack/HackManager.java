@@ -7,8 +7,7 @@ import international.astro.hack.hacks.combat.*;
 import international.astro.hack.hacks.exploits.*;
 import international.astro.hack.hacks.misc.*;
 import international.astro.hack.hacks.movement.*;
-import international.astro.hack.hacks.random.AntiYonkie;
-import international.astro.hack.hacks.random.Spinjitzu;
+import international.astro.hack.hacks.random.*;
 import international.astro.hack.hacks.render.*;
 
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class HackManager{
         add(new Spinjitzu());
         add(new NoRotate());
         add(new AutoIgnore());
-        add(new AntiYonkie());
+        add(new AntiChina());
         add(new Surround());
         add(new AntiAntiBed());
         add(new AntiKB());
@@ -54,6 +53,8 @@ public class HackManager{
         add(new InstaMine());
         add(new GodMode());
         add(new BackupCaller());
+        add(new CrystalModifier());
+        add(new AntiReGear());
     }
 
     public List<Hack> getHacks() {

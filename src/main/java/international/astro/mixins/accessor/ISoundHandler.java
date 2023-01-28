@@ -5,6 +5,4 @@ import net.minecraft.client.audio.SoundRegistry;
 
 public interface ISoundHandler {
     SoundManager getManager();
-    SoundRegistry getRegistry();
-
 }

@@ -12,15 +12,8 @@ import org.spongepowered.asm.mixin.Shadow;
 public class MixinSoundHandler implements ISoundHandler {
     @Shadow @Final private SoundManager sndManager;
 
-    @Shadow @Final private SoundRegistry soundRegistry;
-
     @Override
     public SoundManager getManager() {
         return sndManager;
-    }
-
-    @Override
-    public SoundRegistry getRegistry() {
-        return soundRegistry;
     }
 }
