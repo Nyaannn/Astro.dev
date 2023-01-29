@@ -27,7 +27,7 @@ public class Astro {
     public static final Logger LOGGER = LogManager.getLogger("Astro.dev");
     public static final String NAME = "Astro.dev";
     public static final String MODID = "astro";
-    public static final String VERSION = "2.2";
+    public static final String VERSION = "2.3";
     public static Minecraft mc = Minecraft.getMinecraft();
     public static CommandManager commandManager;
     public static ClickGui clickGui;

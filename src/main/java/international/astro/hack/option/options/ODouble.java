@@ -18,7 +18,6 @@ public class ODouble extends Option {
         if(value>max){value=max;}
         if(value<min){value=min;}
         return value;
-
     }
 
     public double getValue(){

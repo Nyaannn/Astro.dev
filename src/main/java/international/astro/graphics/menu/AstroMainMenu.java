@@ -44,32 +44,42 @@ public class AstroMainMenu extends GuiScreen {
     @Override
     public void drawScreen(int p_drawScreen_1_, int p_drawScreen_2_, float p_drawScreen_3_) {
         ScaledResolution sr = new ScaledResolution(mc);
-        RenderUtils.drawImage(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), 0x40ffffff, "textures/background.png");
-        RenderUtils.drawImage((width / 2)-115, height / 2 - 240, 240, 240, 0x40ffffff, "textures/logo.png");
-        Astro.MenuFont.drawString("Copyright Mojang Studios. Do not distribute!", width - Astro.MenuFont.getStringWidth("Copyright Mojang Studios. Do not distribute!") - 2, height - Astro.MenuFont.getFontHeight(), 0x50ffffff);
-        Astro.MenuFont.drawString(Astro.NAME +" b" + Astro.VERSION+" By Logging4J, Nyaann and WMS :o)", 4, height - Astro.MenuFont.getFontHeight(), 0x50ffffff);
-        settingsButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, width / 2 + 5, height / 2);
-        quitButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, width / 2 + 5, height / 2 +25);
-        singlePlayerButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, width / 2 - 80, height / 2);
-        multiPlayerButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, width / 2 - 80, height / 2+25);
-        vanillaMenu.renderButton(p_drawScreen_1_, p_drawScreen_2_, 10, 10);
 
+        //logo n background
+        RenderUtils.drawImage(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), 0x40ffffff, "textures/background.png");
+        RenderUtils.drawImage((sr.getScaledWidth() / 2)-115, sr.getScaledHeight() / 2 - 240, 240, 240, 0x40ffffff, "textures/logo.png");
+
+        //creds n copyright's for mojang
+        Astro.MenuFont.drawString("Copyright Mojang Studios. Do not distribute!", sr.getScaledWidth() - Astro.MenuFont.getStringWidth("Copyright Mojang Studios. Do not distribute!") - 2, sr.getScaledHeight() - Astro.MenuFont.getFontHeight(), -1);
+        Astro.MenuFont.drawString(Astro.NAME +" b" + Astro.VERSION+" By Logging4J, Nyaann and WMS :o)", 4, sr.getScaledHeight() - Astro.MenuFont.getFontHeight(), -1);
+
+        //buttons
+        settingsButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, sr.getScaledWidth() / 2 + 5, sr.getScaledHeight() / 2);
+        quitButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, sr.getScaledWidth() / 2 + 5, sr.getScaledHeight() / 2 +25);
+        singlePlayerButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, sr.getScaledWidth() / 2 - 80, sr.getScaledHeight() / 2);
+        multiPlayerButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, sr.getScaledWidth() / 2 - 80, sr.getScaledHeight() / 2+25);
+        vanillaMenu.renderButton(p_drawScreen_1_, p_drawScreen_2_, 10, 10);
         discordButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, 90, 10);
+
+        //changelog
+        Astro.MenuFont.drawString("ChangeLog Astro b"+Astro.VERSION, 10, sr.getScaledHeight()/2 - 25, -1);
+        Astro.MenuFont.drawString("-Added SilentSwitch to AntiReGear", 10, sr.getScaledHeight()/2 - 10, -1);
+        Astro.MenuFont.drawString("-Added Changelog to menu", 10, sr.getScaledHeight()/2, -1);
+        Astro.MenuFont.drawString("-Added CrystalModifier", 10, sr.getScaledHeight()/2+10, -1);
+
+
         super.drawScreen(p_drawScreen_1_, p_drawScreen_2_, p_drawScreen_3_);
     }
 
     @Override
     protected void mouseClicked(int p_mouseClicked_1_, int p_mouseClicked_2_, int p_mouseClicked_3_) throws IOException {
-        if(singlePlayerButton.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
+        if (singlePlayerButton.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
             mc.displayGuiScreen(new GuiWorldSelection(this));
-        }
-        else if (multiPlayerButton.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
+        } else if (multiPlayerButton.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
             mc.displayGuiScreen(new GuiMultiplayer(this));
-        }
-        else if (settingsButton.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
+        } else if (settingsButton.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
             mc.displayGuiScreen(new GuiOptions(this, mc.gameSettings));
-        }
-        else if (quitButton.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
+        } else if (quitButton.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
             mc.shutdown();
         } else if (vanillaMenu.isPressed(p_mouseClicked_1_, p_mouseClicked_2_)) {
             mc.displayGuiScreen(new GuiMainMenu());

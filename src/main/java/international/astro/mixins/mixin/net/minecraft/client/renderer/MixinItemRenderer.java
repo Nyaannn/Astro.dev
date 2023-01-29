@@ -110,29 +110,7 @@ public abstract class MixinItemRenderer {
                 float swingprogress = mc.player.getSwingProgress(mc.getRenderPartialTicks());;
                 if(Astro.hackManager.getHack("Animations").isEnabled()){
                     if(enumhandside != EnumHandSide.LEFT) {
-                        if (Animations.getInstance.mode.isMode("Astro")) {
-                            GlStateManager.translate(0.56F, -0.52F, -0.71999997F);
-                            GlStateManager.translate(0.0F, swingprogress * -0.6F, 0.0F);
-                            GlStateManager.rotate(25F, 0.0F, 1.0F, 0.0F);
-                            float var3 = MathHelper.sin(swingprogress * swingprogress * 3.1415927F);
-                            float var4 = MathHelper.sin(MathHelper.sqrt(swingprogress) * 3.1415927F);
-                            GlStateManager.rotate(var3 * -15F, 0.0F, 1.0F, 0.2F);
-                            GlStateManager.rotate(var4 * -10F, 0.2F, 0.1F, 1.0F);
-                            GlStateManager.rotate(var4 * -30F, 1.3F, 0.1F, 0.2F);
-                            GlStateManager.scale(Animations.getInstance.scale.getFloatValue(), Animations.getInstance.scale.getFloatValue(), Animations.getInstance.scale.getFloatValue());
-
-                        } else if (Animations.getInstance.mode.isMode("Astolfo")) {
-                            GlStateManager.translate(0.56F, -0.5F, -0.71999997F);
-                            GlStateManager.translate(0.0F, 0.0F, 0.0F);
-                            GlStateManager.rotate(45.0f, 0.0f, 1.0f, 0.0f);
-                            float var11 = MathHelper.sin(swingprogress * swingprogress * (float) Math.PI);
-                            float var12 = MathHelper.sin(MathHelper.sqrt(swingprogress) * (float) Math.PI);
-                            GlStateManager.rotate(var11 * -30.0F, 0.0F, 1.0F, 0.0F);
-                            GlStateManager.rotate(var12 * 0.0F, 0.0F, 0.0f, 1.0F);
-                            GlStateManager.rotate(var12 * -35.0F, 1.0F, 0.0F, 0.0F);
-                            GlStateManager.scale(Animations.getInstance.scale.getFloatValue(), Animations.getInstance.scale.getFloatValue(), Animations.getInstance.scale.getFloatValue());
-
-                        } else if (Animations.getInstance.mode.isMode("Dortware")) {
+                        if (Animations.getInstance.mode.isMode("Dortware")) {
                             GlStateManager.translate(0.56F, -0.5F, -0.71999997F);
                             GlStateManager.translate(0.0F, 0.0F, 0.0F);
                             GlStateManager.rotate(45.0f, 0.0f, 1.0f, 0.0f);
@@ -141,8 +119,6 @@ public abstract class MixinItemRenderer {
                             GlStateManager.rotate(var11 * 0.0F, 0.0F, 1.0F, 0.0F);
                             GlStateManager.rotate(var12 * 0.0F, 0.0F, 0.0f, 1.0F);
                             GlStateManager.rotate(var12 * -90.0F, 1.0F, 0.0F, 0.0F);
-                            GlStateManager.scale(Animations.getInstance.scale.getFloatValue(), Animations.getInstance.scale.getFloatValue(), Animations.getInstance.scale.getFloatValue());
-
                         }
                     }else {
                         GlStateManager.translate((float) i * f, f5, f6);

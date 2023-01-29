@@ -2,6 +2,7 @@ package international.astro.hack.hacks.random;
 
 import international.astro.hack.Hack;
 import international.astro.hack.option.options.ODouble;
+import international.astro.util.TimerUtil;
 import net.minecraft.network.play.client.CPacketChatMessage;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -11,26 +12,24 @@ import java.util.Random;
 
 @Hack.Construct(name = "AntiChina", description = "taiwan gang on top", category = Hack.Category.RANDOM)
 public class AntiChina extends Hack {
-    int delaythingie=0;
-    ODouble delay = new ODouble("Delay", 20, 200, 1, 50);
+    ODouble delay = new ODouble("Delay", 20, 500, 1, 50);
+    TimerUtil timer = new TimerUtil();
 
     public AntiChina() {
         addOption(delay);
     }
     @Override
     public void onEnable() {
-        delaythingie=0;
+        timer.reset();
     }
     @Override
     public void onDisable() {
-        delaythingie=0;
+        timer.reset();
     }
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
         if (nullCheck()) {return;}
-
-        delaythingie=delaythingie+1;
-        if(delaythingie==delay.getIntValue()) {
+        if(timer.passedMs(delay.getValue())) {
             Random random = new Random();
             int nextInt = random.nextInt(256*256*256);
             String hex = String.format("#%06x", nextInt);
@@ -45,7 +44,7 @@ public class AntiChina extends Hack {
             testicle.add("> Glory to Taiwan "+hex);
             int index = (int)(Math.random()*testicle.size());
             mc.player.connection.sendPacket(new CPacketChatMessage(testicle.get(index)));
-            delaythingie=0;
+            timer.reset();
         }
 
     }

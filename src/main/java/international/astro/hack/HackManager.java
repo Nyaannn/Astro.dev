@@ -26,7 +26,7 @@ public class HackManager{
         add(new Timer());
         add(new Phase());
         add(new ChatPlus());
-        add(new ViewTweaks());
+        add(new ViewClip());
         add(new ClickGuiMod());
         add(new SelfWeb());
         add(new MoonWalk());
@@ -55,6 +55,10 @@ public class HackManager{
         add(new BackupCaller());
         add(new CrystalModifier());
         add(new AntiReGear());
+        add(new FullBright());
+        add(new WorldTime());
+        add(new NoRender());
+        add(new Fov());
     }
 
     public List<Hack> getHacks() {

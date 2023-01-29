@@ -1,7 +1,8 @@
 package international.astro.mixins.mixin.net.minecraft.entity;
 
 import international.astro.Astro;
-import international.astro.hack.hacks.render.ViewTweaks;
+import international.astro.hack.hacks.render.Animations;
+import international.astro.hack.hacks.render.ViewClip;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
@@ -19,8 +20,8 @@ public abstract class MixinEntityLivingBase extends Entity {
 
     @Inject(method = { "getArmSwingAnimationEnd" }, at = { @At("HEAD") }, cancellable = true)
     private void getArmSwingAnimationEnd(final CallbackInfoReturnable<Integer> info) {
-        if (Astro.hackManager.getHack("ViewTweaks").isEnabled()) {
-            info.setReturnValue(ViewTweaks.getInstance.swingSpeed.getIntValue());
+        if (Astro.hackManager.getHack("Animations").isEnabled()) {
+            info.setReturnValue(Animations.getInstance.swingSpeed.getIntValue());
         }
     }
 }

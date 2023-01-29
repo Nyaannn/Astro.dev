@@ -16,6 +16,7 @@
     "net.minecraft.client.audio.MixinSoundHandler",
     "net.minecraft.util.TimerMixin",
     "net.minecraft.network.play.client.MixinCPacketPlayer",
-    "net.minecraft.entity.MixinEntityLivingBase"
+    "net.minecraft.entity.MixinEntityLivingBase",
+    "net.minecraft.client.renderer.entity.MixinRenderEnderCrystal"
   ]
 }
