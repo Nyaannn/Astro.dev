@@ -1,6 +1,7 @@
 package international.astro.graphics.menu;
 
 import international.astro.Astro;
+import international.astro.hack.hacks.client.CustomFont;
 import international.astro.util.RenderUtils;
 import net.minecraft.client.gui.*;
 
@@ -50,8 +51,14 @@ public class AstroMainMenu extends GuiScreen {
         RenderUtils.drawImage((sr.getScaledWidth() / 2)-115, sr.getScaledHeight() / 2 - 240, 240, 240, 0x40ffffff, "textures/logo.png");
 
         //creds n copyright's for mojang
-        Astro.MenuFont.drawString("Copyright Mojang Studios. Do not distribute!", sr.getScaledWidth() - Astro.MenuFont.getStringWidth("Copyright Mojang Studios. Do not distribute!") - 2, sr.getScaledHeight() - Astro.MenuFont.getFontHeight(), -1);
-        Astro.MenuFont.drawString(Astro.NAME +" b" + Astro.VERSION+" By Logging4J, Nyaann and WMS :o)", 4, sr.getScaledHeight() - Astro.MenuFont.getFontHeight(), -1);
+        if(Astro.hackManager.getHack("CustomFont").isEnabled()) {
+            Astro.MenuFont.drawString("Copyright Mojang Studios. Do not distribute!", sr.getScaledWidth() - Astro.MenuFont.getStringWidth("Copyright Mojang Studios. Do not distribute!") - 2, sr.getScaledHeight() - Astro.MenuFont.getFontHeight(), -1);
+            Astro.MenuFont.drawString(Astro.NAME + " b" + Astro.VERSION + " By Logging4J, Nyaann and WMS :o)", 4, sr.getScaledHeight() - Astro.MenuFont.getFontHeight(), -1);
+        }else{
+            mc.fontRenderer.drawString("Copyright Mojang Studios. Do not distribute!", sr.getScaledWidth() - Astro.MenuFont.getStringWidth("Copyright Mojang Studios. Do not distribute!") - 2, sr.getScaledHeight() - Astro.MenuFont.getFontHeight(), -1);
+            mc.fontRenderer.drawString(Astro.NAME + " b" + Astro.VERSION + " By Logging4J, Nyaann and WMS :o)", 4, sr.getScaledHeight() - Astro.MenuFont.getFontHeight(), -1);
+
+        }
 
         //buttons
         settingsButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, sr.getScaledWidth() / 2 + 5, sr.getScaledHeight() / 2);
@@ -60,13 +67,6 @@ public class AstroMainMenu extends GuiScreen {
         multiPlayerButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, sr.getScaledWidth() / 2 - 80, sr.getScaledHeight() / 2+25);
         vanillaMenu.renderButton(p_drawScreen_1_, p_drawScreen_2_, 10, 10);
         discordButton.renderButton(p_drawScreen_1_, p_drawScreen_2_, 90, 10);
-
-        //changelog
-        Astro.MenuFont.drawString("ChangeLog Astro b"+Astro.VERSION, 10, sr.getScaledHeight()/2 - 25, -1);
-        Astro.MenuFont.drawString("-Added SilentSwitch to AntiReGear", 10, sr.getScaledHeight()/2 - 10, -1);
-        Astro.MenuFont.drawString("-Added Changelog to menu", 10, sr.getScaledHeight()/2, -1);
-        Astro.MenuFont.drawString("-Added CrystalModifier", 10, sr.getScaledHeight()/2+10, -1);
-
 
         super.drawScreen(p_drawScreen_1_, p_drawScreen_2_, p_drawScreen_3_);
     }
@@ -114,7 +114,11 @@ public class AstroMainMenu extends GuiScreen {
             this.y = y;
             RenderUtils.roundedRect(x, y, w, h, 3, color);
             RenderUtils.roundedRect(x, y, w, h, 3, RenderUtils.isHovered(x, y, w, h, mouseX, mouseY) ? colorPressed : color );
-            Astro.MenuFont.drawString(s, x + w / 2 - Astro.MenuFont.getStringWidth(s) / 2, y + h / 2 - 4, -1);
+            if(Astro.hackManager.getHack("CustomFont").isEnabled()) {
+                Astro.MenuFont.drawString(s, x + w / 2 - Astro.MenuFont.getStringWidth(s) / 2, y + h / 2 - 4, -1);
+            }else{
+                mc.fontRenderer.drawString(s, x + w / 2 - Astro.MenuFont.getStringWidth(s) / 2, y + h / 2 - 4, -1);
+            }
 
         }
 

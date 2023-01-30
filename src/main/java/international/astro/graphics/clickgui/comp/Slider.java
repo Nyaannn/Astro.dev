@@ -39,8 +39,14 @@ public class Slider extends OptionButton {
         sliderWidth = (int) ((getW() - 6) * (option.getValue() - option.getMin()) / (option.getMax() - option.getMin()));
         Astro.clickGui.drawRect(getX(), getY(), getX() + getW(), getY() + getH(), new Color(0, 0, 0,180).getRGB());
         Astro.clickGui.drawRect(getX() + 2, getY(), getX() + sliderWidth+4, getY() + getH(), Astro.colorManager.getRGBA());
-        Astro.font.drawString(option.getName(), (float) (getX() + 3), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
-        Astro.font.drawString(String.valueOf(option.getValue()), (float) ((getX() + getW()) - mc.fontRenderer.getStringWidth(String.valueOf(option.getValue()))) - 2, (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+        if(Astro.hackManager.getHack("CustomFont").isEnabled()) {
+            Astro.font.drawString(option.getName(), (float) (getX() + 3), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+            Astro.font.drawString(String.valueOf(option.getValue()), (float) ((getX() + getW()) - mc.fontRenderer.getStringWidth(String.valueOf(option.getValue()))) - 2, (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+        }else{
+            mc.fontRenderer.drawString(option.getName(), getX() + 3, getY() + 4, new Color(255, 255, 255, 255).getRGB());
+            mc.fontRenderer.drawString(String.valueOf(option.getValue()), (getX() + getW() - mc.fontRenderer.getStringWidth(String.valueOf(option.getValue()))) - 2, getY() + 4, new Color(255, 255, 255, 255).getRGB());
+
+        }
         Gui.drawRect(getX(), getY(), getX() + 1, getY() + 15, Astro.colorManager.getRGBA());
         Gui.drawRect(getX() + 104, getY(), getX() + 105, getY() + 15, Astro.colorManager.getRGBA());
     }

@@ -33,9 +33,11 @@ public class Boolean extends OptionButton {
             Astro.clickGui.drawRect(getX() + 88, getY() + 1, getX() + 100, getY() + 2, Astro.colorManager.getRGBA());
             Astro.clickGui.drawRect(getX() + 88, getY() + 15 - 3, getX() + 100, getY() + 15 - 2, Astro.colorManager.getRGBA());
         }
-
-        Astro.font.drawString(option.getName(), (float) (getX() + 3), (float) (getY() + 4), new Color(175, 175, 175, 255).getRGB());
-
+        if(Astro.hackManager.getHack("CustomFont").isEnabled()) {
+            Astro.font.drawString(option.getName(), (float) (getX() + 3), (float) (getY() + 4), new Color(175, 175, 175, 255).getRGB());
+        }else{
+            mc.fontRenderer.drawString(option.getName(), getX() + 3, getY() + 4, new Color(175, 175, 175, 255).getRGB());
+        }
         Gui.drawRect(getX(), getY(), getX() + 1, getY() + 15, Astro.colorManager.getRGBA());
         Gui.drawRect(getX() + 104, getY(), getX() + 105, getY() + 15, Astro.colorManager.getRGBA());
     }

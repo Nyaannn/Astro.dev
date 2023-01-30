@@ -3,7 +3,7 @@ package international.astro.hack.hacks.render;
 import international.astro.hack.Hack;
 import international.astro.hack.option.options.ODouble;
 
-@Hack.Construct(name = "CrystalModifier(WIP)", description = "Modifies Crystal", category = Hack.Category.RENDER)
+@Hack.Construct(name = "CrystalModifier", description = "Modifies Crystal", category = Hack.Category.RENDER)
 public class CrystalModifier extends Hack {
 
     public static ODouble scale = new ODouble("Scale",0.1,1,0.1,0.35);

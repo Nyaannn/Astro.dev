@@ -22,8 +22,14 @@ public class Mode extends OptionButton {
     @Override
     public void render(int mX, int mY) {
         Astro.clickGui.drawRect(getX(), getY(), getX() + 105, getY() + 15, new Color(0, 0, 0, 180).getRGB());
-        Astro.font.drawString(option.getName(), (float) (getX() + 3), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
-        Astro.font.drawString(option.getMode(), (float) ((getX() + getW()) - Astro.font.getStringWidth(option.getMode())), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+        if(Astro.hackManager.getHack("CustomFont").isEnabled()) {
+            Astro.font.drawString(option.getName(), (float) (getX() + 3), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+            Astro.font.drawString(option.getMode(), (float) ((getX() + getW()) - Astro.font.getStringWidth(option.getMode())), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+        }else{
+            mc.fontRenderer.drawString(option.getName(), getX() + 3, getY() + 4, new Color(255, 255, 255, 255).getRGB());
+            mc.fontRenderer.drawString(option.getMode(), (getX() + getW() - Astro.font.getStringWidth(option.getMode())), getY() + 4, new Color(255, 255, 255, 255).getRGB());
+
+        }
         Gui.drawRect(getX(), getY(), getX() + 1, getY() + 15, Astro.colorManager.getRGBA());
         Gui.drawRect(getX() + 104, getY(), getX() + 105, getY() + 15, Astro.colorManager.getRGBA());
     }

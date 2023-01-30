@@ -62,12 +62,6 @@ public class Hack {
         options.add(option);
     }
 
-    public void addOptions(Option... options){
-        for(Option option : options){
-            addOption(option);
-        }
-    }
-
     public String getName() {
         return name;
     }

@@ -8,6 +8,7 @@ import international.astro.command.CommandManager;
 import international.astro.events.ChatEvent;
 import international.astro.events.KeyEvent;
 import international.astro.hack.HackManager;
+import international.astro.util.file.Config;
 import international.astro.util.font.GlyphPageFontRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextComponentString;
@@ -37,6 +38,7 @@ public class Astro {
     public static GlyphPageFontRenderer MenuFont;
 
     public static RotationManager rotationManager;
+
     @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
         log("Client PreInitialization");
@@ -55,6 +57,8 @@ public class Astro {
         clickGui = new ClickGui();
         //Config.loadConfig();
         rotationManager=new RotationManager();
+        Config.loadConfig();
+        Runtime.getRuntime().addShutdownHook(new Config());
         RenderUtils.setWindowIcon();
         MinecraftForge.EVENT_BUS.register(new KeyEvent());
         MinecraftForge.EVENT_BUS.register(new ChatEvent());
@@ -72,14 +76,7 @@ public class Astro {
     public static void log(String message){
         LOGGER.info( "[Astro.dev] " + message);
     }
-    public static void sendMsg(String s){
-        mc.player.sendMessage(new TextComponentString("["+ ChatFormatting.BLUE+"Astro.dev"+ChatFormatting.WHITE+"] " + s));
+    public static void sendMsg(String s) {
+        mc.player.sendMessage(new TextComponentString("[" + ChatFormatting.BLUE + "Astro.dev" + ChatFormatting.WHITE + "] " + s));
     }
-    public static void sendErrorMsg(String s){
-        mc.player.sendMessage(new TextComponentString("["+ ChatFormatting.BLUE+"Astro.dev"+ChatFormatting.WHITE+"] [" + ChatFormatting.RED+"ERROR"+ ChatFormatting.WHITE +"] "+ s));
-    }
-    public static void sendDebugMsg(String s){
-        mc.player.sendMessage(new TextComponentString("["+ ChatFormatting.BLUE+"Astro.dev"+ChatFormatting.WHITE+"] [" + ChatFormatting.YELLOW+"DEBUG"+ ChatFormatting.WHITE +"] "+ s));
-    }
-
 }

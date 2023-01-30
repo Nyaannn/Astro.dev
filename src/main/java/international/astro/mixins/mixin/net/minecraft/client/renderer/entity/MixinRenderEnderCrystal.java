@@ -19,7 +19,7 @@ public class MixinRenderEnderCrystal {
 
     @Redirect(method = "doRender", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/ModelBase;render(Lnet/minecraft/entity/Entity;FFFFFF)V"))
     public void doRender(ModelBase modelBase, Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        if(Astro.hackManager.getHack("CrystalModifier(WIP)").isEnabled()) {
+        if(Astro.hackManager.getHack("CrystalModifier").isEnabled()) {
             float defSpin = ((EntityEnderCrystal)entity).innerRotation+mc.getRenderPartialTicks();
             float newSpin = defSpin*CrystalModifier.spinSpeed.getFloatValue();
             float defBounce = MathHelper.sin(defSpin * 0.2f) / 2.0f + 0.5f;

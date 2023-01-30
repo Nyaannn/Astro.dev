@@ -2,6 +2,7 @@ package international.astro.hack;
 
 import international.astro.hack.hacks.client.BackupCaller;
 import international.astro.hack.hacks.client.ClickGuiMod;
+import international.astro.hack.hacks.client.CustomFont;
 import international.astro.hack.hacks.client.HUD;
 import international.astro.hack.hacks.combat.*;
 import international.astro.hack.hacks.exploits.*;
@@ -35,13 +36,11 @@ public class HackManager{
         add(new Disabler());
         add(new Flight());
         add(new HUD());
-        add(new BedAura());
         add(new FreeLook());
         add(new Spinjitzu());
         add(new NoRotate());
         add(new AutoIgnore());
         add(new AntiChina());
-        add(new Surround());
         add(new AntiAntiBed());
         add(new AntiKB());
         add(new IceSpeed());
@@ -59,6 +58,7 @@ public class HackManager{
         add(new WorldTime());
         add(new NoRender());
         add(new Fov());
+        add(new CustomFont());
     }
 
     public List<Hack> getHacks() {
