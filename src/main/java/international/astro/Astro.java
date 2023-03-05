@@ -28,7 +28,11 @@ public class Astro {
     public static final Logger LOGGER = LogManager.getLogger("Astro.dev");
     public static final String NAME = "Astro.dev";
     public static final String MODID = "astro";
+<<<<<<< HEAD
     public static final String VERSION = "2.4";
+=======
+    public static final String VERSION = "2.3";
+>>>>>>> 54c4a826ad0df3f3e9b646312425ccd46dd7d76c
     public static Minecraft mc = Minecraft.getMinecraft();
     public static CommandManager commandManager;
     public static ClickGui clickGui;
@@ -55,7 +59,12 @@ public class Astro {
         MenuFont = GlyphPageFontRenderer.create("Azonix", 20, true, false, false);
         colorManager = new ColorManager(120, 120, 255, 255);
         clickGui = new ClickGui();
+        //Config.loadConfig();
         rotationManager=new RotationManager();
+<<<<<<< HEAD
+=======
+        Config.loadConfig();
+>>>>>>> 54c4a826ad0df3f3e9b646312425ccd46dd7d76c
         Runtime.getRuntime().addShutdownHook(new Config());
         RenderUtils.setWindowIcon();
         MinecraftForge.EVENT_BUS.register(new KeyEvent());
@@ -66,7 +75,11 @@ public class Astro {
     }
 
     public static void onShutdown(){
+<<<<<<< HEAD
 
+=======
+        //Config.saveConfig();
+>>>>>>> 54c4a826ad0df3f3e9b646312425ccd46dd7d76c
         Discord.stopRPC();
         Config.saveConfig();
     }
@@ -83,5 +96,8 @@ public class Astro {
     public static void sendMsg(String s) {
         mc.player.sendMessage(new TextComponentString("[" + ChatFormatting.BLUE + "Astro.dev" + ChatFormatting.WHITE + "] " + s));
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54c4a826ad0df3f3e9b646312425ccd46dd7d76c
 }
