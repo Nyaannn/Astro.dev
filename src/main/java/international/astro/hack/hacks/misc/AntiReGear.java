@@ -5,12 +5,9 @@ import international.astro.hack.option.options.OBoolean;
 import international.astro.hack.option.options.ODouble;
 import international.astro.util.PlayerUtil;
 import net.minecraft.block.BlockShulkerBox;
-<<<<<<< HEAD
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Blocks.*;
 import net.minecraft.init.Items;
-=======
->>>>>>> 54c4a826ad0df3f3e9b646312425ccd46dd7d76c
 import net.minecraft.network.play.client.CPacketHeldItemChange;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;

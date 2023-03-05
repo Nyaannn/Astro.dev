@@ -13,11 +13,7 @@ public class Discord {
         String discordID = "1063228897719746700";
         DiscordRPC.INSTANCE.Discord_Initialize(discordID, eventHandlers, true, null);
         discordRichPresence.startTimestamp = System.currentTimeMillis() / 1000L;
-<<<<<<< HEAD
         discordRichPresence.details = "https://discord.gg/ynxXsuAKRa";
-=======
-        discordRichPresence.details = "https://discord.gg/sRgsXnAK";
->>>>>>> 54c4a826ad0df3f3e9b646312425ccd46dd7d76c
         discordRichPresence.largeImageKey = "large";
         discordRichPresence.state = null;
         DiscordRPC.INSTANCE.Discord_UpdatePresence(discordRichPresence);

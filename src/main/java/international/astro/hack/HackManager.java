@@ -1,6 +1,5 @@
 package international.astro.hack;
 
-import international.astro.hack.hacks.client.BackupCaller;
 import international.astro.hack.hacks.client.ClickGuiMod;
 import international.astro.hack.hacks.client.CustomFont;
 import international.astro.hack.hacks.client.HUD;
@@ -43,11 +42,7 @@ public class HackManager{
         add(new NoRotate());
         add(new AutoIgnore());
         add(new AntiChina());
-<<<<<<< HEAD
         add(new AntiSkull());
-=======
-        add(new AntiAntiBed());
->>>>>>> 54c4a826ad0df3f3e9b646312425ccd46dd7d76c
         add(new AntiKB());
         add(new IceSpeed());
         add(new FootExp());
@@ -57,10 +52,6 @@ public class HackManager{
         add(new FastUse());
         add(new InstaMine());
         add(new GodMode());
-<<<<<<< HEAD
-=======
-        add(new BackupCaller());
->>>>>>> 54c4a826ad0df3f3e9b646312425ccd46dd7d76c
         add(new CrystalModifier());
         add(new AntiReGear());
         add(new FullBright());

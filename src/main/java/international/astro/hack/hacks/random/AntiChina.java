@@ -12,7 +12,7 @@ import java.util.Random;
 
 @Hack.Construct(name = "AntiChina", description = "taiwan gang on top", category = Hack.Category.RANDOM)
 public class AntiChina extends Hack {
-    ODouble delay = new ODouble("Delay", 20, 500, 1, 50);
+    ODouble delay = new ODouble("Delay", 20, 50000, 1, 1000);
     TimerUtil timer = new TimerUtil();
 
     public AntiChina() {

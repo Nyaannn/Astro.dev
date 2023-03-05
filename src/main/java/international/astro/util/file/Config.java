@@ -78,11 +78,7 @@ public class Config extends Thread{
     public void run() {
         saveConfig();
     }
-<<<<<<< HEAD
     public static void saveConfig(){
-=======
-    private static void saveConfig(){
->>>>>>> 54c4a826ad0df3f3e9b646312425ccd46dd7d76c
         if (!abstractDir.exists() && !abstractDir.mkdirs()) System.out.println("Failed to create config folder");
         if (!new File(modulesPath).exists() && !new File(modulesPath).mkdirs()) {
             System.out.println("Failed to create modules folder");
