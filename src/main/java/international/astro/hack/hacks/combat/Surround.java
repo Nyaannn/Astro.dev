@@ -81,18 +81,18 @@ public class Surround extends Hack {
                             PlayerUtil.placeBlock(new BlockPos(PlayerUtil.getPosFloored(mc.player)), EnumHand.MAIN_HAND, false);
                             mc.player.connection.sendPacket(new CPacketHeldItemChange(prevSlot));
                         } else {
-                            Astro.sendErrorMsg("You need to have webs to selfweb");
+                            Astro.sendMsg("You need to have webs to selfweb");
                             this.disable();
                         }
                     }
-            }
-            if(AutoDisable.isEnabled()){
-                this.disable();
-            }
-            del=0;
+                }
+                if(AutoDisable.isEnabled()){
+                    this.disable();
+                }
+                del=0;
             }
         }else {
-            Astro.sendErrorMsg("You need to have obsidian to surround");
+            Astro.sendMsg("You need to have obsidian to surround");
             this.disable();
         }
     }

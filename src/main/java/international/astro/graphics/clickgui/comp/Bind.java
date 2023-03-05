@@ -20,16 +20,32 @@ public class Bind extends OptionButton {
 
     public void render(int mX, int mY) {
         Gui.drawRect(getX(), getY(), getX() + 105, getY() + 15, new Color(0, 0, 0,180).getRGB());
-        Astro.font.drawString("Bind", (float) (getX() + 3), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+        if(Astro.hackManager.getHack("CustomFont").isEnabled()) {
+            Astro.font.drawString("Bind", (float) (getX() + 3), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+        }else{
+            mc.fontRenderer.drawString("Bind", getX() + 3, getY() + 4, new Color(255, 255, 255, 255).getRGB());
+        }
         if (binding) {
-            Astro.font.drawString("...", (float) ((getX() + getW() - 6) - mc.fontRenderer.getStringWidth("...")), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+            if(Astro.hackManager.getHack("CustomFont").isEnabled()) {
+                Astro.font.drawString("...", (float) ((getX() + getW() - 6) - mc.fontRenderer.getStringWidth("...")), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+            }else {
+                mc.fontRenderer.drawString("...", (getX() + getW() - 6 - mc.fontRenderer.getStringWidth("...")), getY() + 4, new Color(255, 255, 255, 255).getRGB());
+            }
         }
         else {
             try {
-                Astro.font.drawString(Keyboard.getKeyName(hack.getBind()), (float) ((getX() + getW() - 3) - mc.fontRenderer.getStringWidth(Keyboard.getKeyName(hack.getBind()))), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+                if(Astro.hackManager.getHack("CustomFont").isEnabled()) {
+                    Astro.font.drawString(Keyboard.getKeyName(hack.getBind()), (float) ((getX() + getW() - 3) - mc.fontRenderer.getStringWidth(Keyboard.getKeyName(hack.getBind()))), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+                }else {
+                    mc.fontRenderer.drawString(Keyboard.getKeyName(hack.getBind()), (getX() + getW() - 3) - mc.fontRenderer.getStringWidth(Keyboard.getKeyName(hack.getBind())), getY() + 4, new Color(255, 255, 255, 255).getRGB());
+                }
             }
             catch (Exception e) {
-                Astro.font.drawString("NONE", (float) ((getX() + getW()) - mc.fontRenderer.getStringWidth("NONE")), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+                if(Astro.hackManager.getHack("CustomFont").isEnabled()) {
+                    Astro.font.drawString("NONE", (float) ((getX() + getW()) - mc.fontRenderer.getStringWidth("NONE")), (float) (getY() + 4), new Color(255, 255, 255, 255).getRGB());
+                }else {
+                    mc.fontRenderer.drawString("NONE", (getX() + getW()) - mc.fontRenderer.getStringWidth("NONE"), getY() + 4, new Color(255, 255, 255, 255).getRGB());
+                }
             }
         }
         Gui.drawRect(getX(), getY(), getX() + 1, getY() + 15, Astro.colorManager.getRGBA());

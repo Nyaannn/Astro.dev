@@ -50,4 +50,8 @@ public class ColorManager {
     public int getRGBA(){
         return new Color(red, green, blue, alpha).getRGB();
     }
+
+    public Color getColor(){
+        return new Color(red, green, blue, alpha);
+    }
 }

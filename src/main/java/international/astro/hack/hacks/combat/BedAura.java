@@ -268,16 +268,16 @@ public class BedAura extends Hack {
                         }
                     }
                 } else {
-                    Astro.sendErrorMsg("You need to have higher health to use bed aura");
+                    Astro.sendMsg("You need to have higher health to use bed aura");
                     this.disable();
                 }
 
             } else {
-                Astro.sendErrorMsg("You need to have beds to use bed aura");
+                Astro.sendMsg("You need to have beds to use bed aura");
                 this.disable();
             }
         } else {
-            Astro.sendErrorMsg("You need to be in the nether to use bed aura");
+            Astro.sendMsg("You need to be in the nether to use bed aura");
             this.disable();
         }
 

@@ -154,11 +154,13 @@ public class GlyphPageFontRenderer {
      */
     public int drawString(String text, float x, float y, int color) {
         GlStateManager.enableAlpha();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(770, 771);
         this.resetStyles();
         int i;
 
         i = this.renderString(text, x - 2.0F, y - 2.5F, color, false);
-
+        GlStateManager.disableBlend();
         return i;
     }
 

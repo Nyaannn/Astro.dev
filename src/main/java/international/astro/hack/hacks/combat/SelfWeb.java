@@ -2,6 +2,7 @@ package international.astro.hack.hacks.combat;
 
 import international.astro.hack.Hack;
 import international.astro.util.PlayerUtil;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.network.play.client.CPacketHeldItemChange;
@@ -19,6 +20,7 @@ public class SelfWeb extends Hack {
             PlayerUtil.changeSlot(PlayerUtil.getSlot(Item.getItemFromBlock(Blocks.WEB)));
             PlayerUtil.placeBlock(new BlockPos(PlayerUtil.getPosFloored(mc.player)), EnumHand.MAIN_HAND, false);
             mc.player.connection.sendPacket(new CPacketHeldItemChange(prevSlot));
+
         }
         setEnabled(false);
         super.onEnable();

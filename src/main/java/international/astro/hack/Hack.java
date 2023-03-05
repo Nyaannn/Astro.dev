@@ -62,12 +62,6 @@ public class Hack {
         options.add(option);
     }
 
-    public void addOptions(Option... options){
-        for(Option option : options){
-            addOption(option);
-        }
-    }
-
     public String getName() {
         return name;
     }
@@ -107,7 +101,6 @@ public class Hack {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
 
     public enum Category {
         COMBAT("Combat"),

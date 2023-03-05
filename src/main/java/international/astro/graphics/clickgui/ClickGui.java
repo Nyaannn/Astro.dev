@@ -3,6 +3,7 @@ package international.astro.graphics.clickgui;
 
 import international.astro.Astro;
 import international.astro.hack.Hack;
+import international.astro.hack.hacks.client.ClickGuiMod;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +33,7 @@ public class ClickGui extends GuiScreen {
         for (Box window : windows) {
             window.render(mouseX, mouseY);
         }
-        if (OpenGlHelper.shadersSupported && mc.getRenderViewEntity() instanceof EntityPlayer) {
+        if (OpenGlHelper.shadersSupported && mc.getRenderViewEntity() instanceof EntityPlayer && ClickGuiMod.blur.isEnabled()) {
             if (mc.entityRenderer.getShaderGroup() != null) {
                     mc.entityRenderer.getShaderGroup().deleteShaderGroup();
             }

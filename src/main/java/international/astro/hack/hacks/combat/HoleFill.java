@@ -1,12 +1,9 @@
 package international.astro.hack.hacks.combat;
-import international.astro.Astro;
 import international.astro.hack.Hack;
 import international.astro.hack.option.options.OBoolean;
 import international.astro.hack.option.options.ODouble;
 import international.astro.util.PlayerUtil;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
@@ -46,7 +43,6 @@ public class HoleFill extends Hack {
                             PlayerUtil.placeBlock(cock.getPos(), EnumHand.MAIN_HAND, PacketPlace.isEnabled());
                         }
                     } else {
-                        Astro.sendErrorMsg("No fillable holes!!");
                         this.disable();
                     }
                 }

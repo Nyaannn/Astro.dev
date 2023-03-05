@@ -2,6 +2,7 @@ package international.astro.graphics.clickgui;
 
 import international.astro.Astro;
 import international.astro.hack.Hack;
+import international.astro.hack.hacks.client.CustomFont;
 import international.astro.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -56,7 +57,11 @@ public class Box {
         Gui.drawRect(X + 104, Y + 1, X + W, Y + H, Astro.colorManager.getRGBA());
         Gui.drawRect(X, Y + 1, X + W, Y + 2, Astro.colorManager.getRGBA());
         Gui.drawRect(X, Y + 14, X + W, Y + 15, Astro.colorManager.getRGBA());
-        Astro.font.drawString(category.getName(), X + ( W / 2 ) - (mc.fontRenderer.getStringWidth(category.getName()) / 2), (float) (Y + 2.5), new Color(255, 255, 255, 255).getRGB());
+        if(Astro.hackManager.getHack("CustomFont").isEnabled()) {
+            Astro.font.drawString(category.getName(), X + (W / 2) - (mc.fontRenderer.getStringWidth(category.getName()) / 2), (float) (Y + 2.5), new Color(255, 255, 255, 255).getRGB());
+        }else {
+            mc.fontRenderer.drawString(category.getName(), X + (W / 2) - (mc.fontRenderer.getStringWidth(category.getName()) / 2), Y + 2, new Color(255, 255, 255, 255).getRGB());
+        }
         if (open || opening || closing) {
             int modY = Y + H;
             int moduleRenderCount = 0;

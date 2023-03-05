@@ -19,6 +19,9 @@ public class CommandManager {
         commands.add(new ToggleCommand("Toggle", new String[]{"toggle"}));
         commands.add(new TableFlipCommand("Tableflip", new String[]{"tableflip"}));
         commands.add(new SoundCommand("Sound", new String[]{"sound","snd"}));
+        commands.add(new SaveCommand("Save", new String[]{"save"}));
+        commands.add(new LoadCommand("Load", new String[]{"load"}));
+
     }
 
     public void runCommand(String args) {

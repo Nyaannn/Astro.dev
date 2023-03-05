@@ -1,9 +1,5 @@
 package international.astro;
-import club.minnced.discord.rpc.DiscordEventHandlers;
-import club.minnced.discord.rpc.DiscordRPC;
-import club.minnced.discord.rpc.DiscordRichPresence;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import com.mojang.text2speech.Narrator;
 import international.astro.graphics.clickgui.ClickGui;
 import international.astro.util.RenderUtils;
 import international.astro.util.RotationManager;
@@ -12,6 +8,7 @@ import international.astro.command.CommandManager;
 import international.astro.events.ChatEvent;
 import international.astro.events.KeyEvent;
 import international.astro.hack.HackManager;
+import international.astro.util.file.Config;
 import international.astro.util.font.GlyphPageFontRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextComponentString;
@@ -20,12 +17,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-import java.awt.*;
 
 @Mod(modid = Astro.MODID, name = Astro.NAME, version = Astro.VERSION )
 public class Astro {
@@ -33,7 +28,7 @@ public class Astro {
     public static final Logger LOGGER = LogManager.getLogger("Astro.dev");
     public static final String NAME = "Astro.dev";
     public static final String MODID = "astro";
-    public static final String VERSION = "3";
+    public static final String VERSION = "2.4";
     public static Minecraft mc = Minecraft.getMinecraft();
     public static CommandManager commandManager;
     public static ClickGui clickGui;
@@ -43,6 +38,7 @@ public class Astro {
     public static GlyphPageFontRenderer MenuFont;
 
     public static RotationManager rotationManager;
+
     @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
         log("Client PreInitialization");
@@ -60,30 +56,32 @@ public class Astro {
         colorManager = new ColorManager(120, 120, 255, 255);
         clickGui = new ClickGui();
         rotationManager=new RotationManager();
+        Runtime.getRuntime().addShutdownHook(new Config());
         RenderUtils.setWindowIcon();
         MinecraftForge.EVENT_BUS.register(new KeyEvent());
         MinecraftForge.EVENT_BUS.register(new ChatEvent());
+        if(Minecraft.IS_RUNNING_ON_MAC){mc.shutdown();}
+        // assholes made fun of me for using android
+        // have fun paying 1 grand for a simple repair
     }
 
     public static void onShutdown(){
+
         Discord.stopRPC();
+        Config.saveConfig();
     }
     @Mod.EventHandler
     public static void postInit(FMLPostInitializationEvent event) {
+
         log("Client PostInitialization");
+        Config.loadConfig();
     }
 
     public static void log(String message){
         LOGGER.info( "[Astro.dev] " + message);
     }
-    public static void sendMsg(String s){
-        mc.player.sendMessage(new TextComponentString("["+ ChatFormatting.BLUE+"Astro.dev"+ChatFormatting.WHITE+"] " + s));
-    }
-    public static void sendErrorMsg(String s){
-        mc.player.sendMessage(new TextComponentString("["+ ChatFormatting.BLUE+"Astro.dev"+ChatFormatting.WHITE+"] [" + ChatFormatting.RED+"ERROR"+ ChatFormatting.WHITE +"] "+ s));
-    }
-    public static void sendDebugMsg(String s){
-        mc.player.sendMessage(new TextComponentString("["+ ChatFormatting.BLUE+"Astro.dev"+ChatFormatting.WHITE+"] [" + ChatFormatting.YELLOW+"DEBUG"+ ChatFormatting.WHITE +"] "+ s));
+    public static void sendMsg(String s) {
+        mc.player.sendMessage(new TextComponentString("[" + ChatFormatting.BLUE + "Astro.dev" + ChatFormatting.WHITE + "] " + s));
     }
 
 }
