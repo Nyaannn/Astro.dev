@@ -1,5 +1,6 @@
 package international.astro.hack;
 
+import international.astro.hack.hacks.client.BackupCaller;
 import international.astro.hack.hacks.client.ClickGuiMod;
 import international.astro.hack.hacks.client.CustomFont;
 import international.astro.hack.hacks.client.HUD;
@@ -19,6 +20,8 @@ public class HackManager{
 
     public HackManager(){
         add(new CornerClip());
+        add(new BackupCaller());
+        add(new TotemPop());
         add(new Surround());
         add(new BedAura());
         add(new KillAura());

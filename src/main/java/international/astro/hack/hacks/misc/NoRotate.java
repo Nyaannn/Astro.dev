@@ -12,11 +12,11 @@ public class NoRotate extends Hack {
 
     @SubscribeEvent
     public void onReceive(PacketReceiveEvent e){
-        Packet p = e.getPacket();
-        if(p instanceof SPacketPlayerPosLook){
-            SPacketPlayerPosLook packet = (SPacketPlayerPosLook)e.getPacket();
-            ((ISPacketPlayerPosLook)packet).setYaw(mc.player.rotationYaw);
-            ((ISPacketPlayerPosLook) packet).setPitch(mc.player.rotationPitch);
-        }
+      // Packet p = e.getPacket();
+      // if(p instanceof SPacketPlayerPosLook){
+      //     SPacketPlayerPosLook packet = (SPacketPlayerPosLook)e.getPacket();
+      //     ((ISPacketPlayerPosLook)packet).setYaw(mc.player.rotationYaw);
+      //     ((ISPacketPlayerPosLook) packet).setPitch(mc.player.rotationPitch);
+      // }
     }
 }

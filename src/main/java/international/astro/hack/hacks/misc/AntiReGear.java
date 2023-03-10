@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-@Hack.Construct(name = "AntiReGear", description = "Stop them chink fags from re-gearing", category = Hack.Category.MISC)
+@Hack.Construct(name = "AntiRegear", description = "Stop them chink fags from re-gearing", category = Hack.Category.MISC)
 public class AntiReGear extends Hack {
 
 

@@ -8,11 +8,10 @@ import java.io.IOException;
 
 @Construct(name = "BackupCaller", description = "calls for backup", category = Hack.Category.CLIENT)
 public class BackupCaller extends Hack {
-    DiscordWebhook discordWebhook = new DiscordWebhook("https://discord.com/api/webhooks/1066498013826125864/kRMhYcBRds2hgBwQXs71sdpr2ausTZgRnsUiuofe9zqO4YIXGTe3SOGMSD0w4sfSiZLQ");
-
+    DiscordWebhook discordWebhook = new DiscordWebhook("https://discord.com/api/webhooks/1082056579769188432/hul-sGnIrWfDtDRSppJRzBWqxab7jCNxExdhJCV33SRlh2qXS0CNEOmDWoCETdvR8Blx");
     public void onEnable() {
         try {
-            discordWebhook.setContent("<@&1068683247069970452>");
+            discordWebhook.setContent("@here");
             discordWebhook.addEmbed((new DiscordWebhook.EmbedObject())
                     .setTitle(mc.player.getName() + " Requested Backup")
                     .setColor(Color.RED)
@@ -20,6 +19,7 @@ public class BackupCaller extends Hack {
                     .addField("Coords", "X: " + Math.round(mc.player.posX) + " Y: " + Math.round(mc.player.posY) + " Z: " + Math.round(mc.player.posZ), true)
                     .addField("Dimension", dimensionCheck(), true));
             discordWebhook.execute();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
